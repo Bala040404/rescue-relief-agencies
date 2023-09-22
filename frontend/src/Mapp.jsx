@@ -1,48 +1,64 @@
-
-// import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Map, { NavigationControl, Marker } from 'react-map-gl';
 
+let token = 'pk.eyJ1IjoiZmVlZGxpZ2h0NDIiLCJhIjoiY2xnY3d5eW92MTF3bzNjcWxvbm83enk4YyJ9.y2k3VZCUGo5cvYNEfDp7pA';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-// import * as maptilersdk from '@maptiler/sdk';
+
 import './Mapp.css'
-
-
-// function Map() {
-//     const mapContainer = useRef(null);
-//     const map = useRef(null);
-//     const tokyo = { lng: 139.753, lat: 35.6844 };
-//     const [zoom] = useState(14);
-//     maptilersdk.config.apiKey = 'Ofm9V0C3DECvj39aqYS6';
-
-
-//     useEffect(() => {
-//         if (map.current) return; // stops map from intializing more than once
-
-//         map.current = new maptilersdk.Map({
-//             container: mapContainer.current,
-//             style: maptilersdk.MapStyle.STREETS,
-//             center: [tokyo.lng, tokyo.lat],
-//             zoom: zoom
-//         });
-
-
-//     }, [tokyo.lng, tokyo.lat, zoom]);
-
-
-//     return (
-//         <div className="map-wrap">
-//             <div ref={mapContainer} className="map" />
-//         </div>
-//     );
-// }
 
 
 
 function Mapp() {
 
+    let [agencies, setAgencies] = useState([{}]);
+    const [coordinates, setCoordinates] = useState([]);
+    async function fetchAgencies() {
+        let allAgency = await fetch("http://localhost:4000/agency");
+        allAgency = await allAgency.json()
+        setAgencies(allAgency);
+
+
+    }
+
+    useEffect(() => {
+
+        fetchAgencies();
+    }, []);
+
+
+
+
+    async function getCoords(loc) {
+        let cord = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${loc}.json?access_token=${token}`);
+        cord = await cord.json();
+        return cord.features[0].geometry.coordinates;
+    }
+
+
+
+    // Assuming 'agencies' is an array of locations
+    useEffect(() => {
+        // Use Promise.all to fetch coordinates for all agencies
+        Promise.all(agencies.map(async (agency) => {
+            const coords = await getCoords(agency.location);
+            return coords; // Return the coordinates to be included in the results array
+        }))
+            .then(results => {
+                setCoordinates(results); // Update the state with the fetched coordinates
+            })
+            .catch(error => {
+                console.error("Error fetching coordinates for agencies:", error);
+            });
+    }, [agencies]); // Make sure to depend on agencies, not coordinates
+
+    console.log(coordinates)
+
+    let markers = coordinates.map((e) => {
+        return (<Marker longitude={e[0]} latitude={e[1]} />)
+    })
     return (
         <Map mapLib={maplibregl}
             initialViewState={{
@@ -54,10 +70,8 @@ function Mapp() {
             mapStyle="https://api.maptiler.com/maps/streets/style.json?key=Ofm9V0C3DECvj39aqYS6"
         >
             <NavigationControl position="top-left" />
-            <Marker longitude={73.8567} latitude={18.5204} />
-            <Marker longitude={78.1198} latitude={9.9252} />
-            <Marker longitude={74.1240} latitude={15.2993} />
-            <Marker longitude={79.1190} latitude={12.9287} />
+
+            {markers}
 
         </Map>
     )
@@ -65,5 +79,3 @@ function Mapp() {
 
 
 export default Mapp
-
-

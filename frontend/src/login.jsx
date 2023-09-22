@@ -27,9 +27,18 @@ function Login() {
         })
 
         response = await response.json()
+        if (response.user) {
 
-        localStorage.setItem("user", response.user._id)
-        redirect("/")
+            localStorage.setItem("user", response.user._id)
+            redirect("/")
+        } else {
+            window.alert("invalid credentials");
+            setUsername("")
+            setPassword("")
+            redirect("/login")
+        }
+
+
     }
 
     return (

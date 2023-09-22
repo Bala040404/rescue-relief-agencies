@@ -12,7 +12,7 @@ function Register() {
     let [password, setPassword] = useState("");
     let [location, setLocation] = useState("");
     let [contact, setContact] = useState("");
-    let [expertise, setExpertise] = useState("");
+    let [expertise, setExpertise] = useState("Fire");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -62,10 +62,16 @@ function Register() {
                 </div>
 
                 <div class="form-group">
+
                     <label>Expertise</label>
-                    <input type="text" value={expertise} onChange={(e) => {
-                        setExpertise(e.target.value)
-                    }} />
+                    <select value={expertise} onChange={(e) => setExpertise(e.target.value)}>
+                        <option value="Fire">Fire</option>
+                        <option value="Earthquake">Earthquake</option>
+                        <option value="Flood">Flood</option>
+                        <option value="Cyclone">Cyclone</option>
+                        <option value="Landslide">Landslide</option>
+
+                    </select>
                 </div>
 
                 <div class="form-group">

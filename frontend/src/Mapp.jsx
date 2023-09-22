@@ -54,8 +54,10 @@ function Mapp() {
             mapStyle="https://api.maptiler.com/maps/streets/style.json?key=Ofm9V0C3DECvj39aqYS6"
         >
             <NavigationControl position="top-left" />
-            <Marker longitude={77.069710} latitude={28.679079} />
-            <Marker longitude={79.3190} latitude={12.9487} />
+            <Marker longitude={73.8567} latitude={18.5204} />
+            <Marker longitude={78.1198} latitude={9.9252} />
+            <Marker longitude={74.1240} latitude={15.2993} />
+            <Marker longitude={79.1190} latitude={12.9287} />
 
         </Map>
     )

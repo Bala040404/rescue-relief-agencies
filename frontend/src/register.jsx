@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 
 import { useNavigate } from "react-router-dom";
-
+import './register.css'
 function Register() {
 
 
@@ -11,6 +11,8 @@ function Register() {
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [location, setLocation] = useState("");
+    let [contact, setContact] = useState("");
+    let [expertise, setExpertise] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -21,7 +23,9 @@ function Register() {
                 username: username,
                 email: email,
                 password: password,
-                location: location
+                location: location,
+                contact: contact,
+                expertise: expertise
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -35,29 +39,54 @@ function Register() {
     }
 
     return (
-        <div id="registerCard">
+        <div class="container">
 
             <form onSubmit={handleSubmit}>
-                <label>enter the name of the agency</label>
-                <input type="text" value={username} onChange={(e) => {
-                    setUsername(e.target.value)
-                }} />
+                <div class="form-group">
+                    <label>Name of the agency</label>
+                    <input type="text" value={username} onChange={(e) => {
+                        setUsername(e.target.value)
+                    }} /> </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" value={email} onChange={(e) => {
+                        setEmail(e.target.value)
+                    }} />
+                </div>
+                <div class="form-group">
 
-                <label>enter the name of the email</label>
-                <input type="email" value={email} onChange={(e) => {
-                    setEmail(e.target.value)
-                }} />
+                    <label>Password</label>
+                    <input type="password" value={password} onChange={(e) => {
+                        setPassword(e.target.value)
+                    }} />
+                </div>
 
-                <label>enter the password</label>
-                <input type="password" value={password} onChange={(e) => {
-                    setPassword(e.target.value)
-                }} />
+                <div class="form-group">
+                    <label>Expertise</label>
+                    <input type="text" value={expertise} onChange={(e) => {
+                        setExpertise(e.target.value)
+                    }} />
+                </div>
 
-                <label>enter the location</label>
-                <input type="text" value={location} onChange={(e) => {
-                    setLocation(e.target.value)
-                }} />
-                <button>submit</button>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" value={location} onChange={(e) => {
+                        setLocation(e.target.value)
+                    }} />
+                </div>
+
+                <div class="form-group">
+                    <label>contact</label>
+                    <input type="text" value={contact} onChange={(e) => {
+                        setContact(e.target.value)
+                    }} />
+                </div>
+
+                <center>
+                    <button type="submit">submit</button>
+
+                </center>
+
             </form>
         </div>
     )

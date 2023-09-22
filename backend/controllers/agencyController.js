@@ -16,8 +16,8 @@ passport.serializeUser(Agency.serializeUser())
 passport.deserializeUser(Agency.deserializeUser())
 
 async function registerAgency(req, res) {
-    const { email, username, password, location } = req.body
-    const newAgency = new Agency({ username: username, email: email, location: location })
+    const { email, username, password, location, contact, expertise } = req.body
+    const newAgency = new Agency({ username: username, email: email, location: location, contact: contact, expertise: expertise })
     await Agency.register(newAgency, password);
     res.status(200).json({ user: newAgency })
 

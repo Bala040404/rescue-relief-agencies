@@ -14,6 +14,14 @@ const agencySchema = new mongoose.Schema({
     location: {
         type: String,
         required: true
+    },
+    expertise: {
+        type: String,
+        required: true
+    },
+    contact: {
+        type: Number,
+        required: true
     }
 })
 

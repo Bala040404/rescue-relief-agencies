@@ -21,19 +21,24 @@ function Home() {
     }, []);
 
 
-    let x = agencies.map((agenc) => {
+    let x = agencies.map((agenc, i) => {
         return (
-            <div >
-                <h1>name - {agenc.username}</h1>
+
+            <div key={i} className="agencycard">
+                <h1>{agenc.username}</h1>
+                <h2>expertise-{agenc.expertise}</h2>
                 <h3>location - {agenc.location}</h3>
+                <p>{agenc.contact}</p>
+
             </div>
+
         )
     })
 
     return (
         <>
             <h1>home</h1>
-            <div className="container">
+            <div className="agencycardcontainer">
                 {x}
             </div>
         </>

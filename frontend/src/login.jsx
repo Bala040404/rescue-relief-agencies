@@ -1,5 +1,6 @@
 
 import { useState } from "react"
+import './login.css'
 
 import { useNavigate } from "react-router-dom";
 
@@ -38,27 +39,31 @@ function Login() {
             redirect("/login")
         }
 
-
     }
 
     return (
-        <div id="loginCard">
+        <div class="container">
 
             <form onSubmit={handleSubmit}>
-                <label>enter the name of the agency</label>
-                <input type="text" value={username} onChange={(e) => {
-                    setUsername(e.target.value)
-                }} />
+                <div class="form-group">
+                    <label>Name of the agency:</label>
+                    <input type="text" value={username} onChange={(e) => {
+                        setUsername(e.target.value)
+                    }} />
+                </div>
 
+                <div class="form-group">
 
+                    <label>Password:</label>
+                    <input type="password" value={password} onChange={(e) => {
+                        setPassword(e.target.value)
+                    }} />
+                </div>
 
-                <label>enter the password</label>
-                <input type="password" value={password} onChange={(e) => {
-                    setPassword(e.target.value)
-                }} />
+                <center>
+                    <button type="submit">submit</button>
+                </center>
 
-
-                <button>submit</button>
             </form>
         </div>
     )

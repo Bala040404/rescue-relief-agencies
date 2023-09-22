@@ -17,13 +17,13 @@ function Navbar() {
 
     return (
         <nav id="Navbar">
-            <NavLink className="lnk" to="/" >home</NavLink>
-            <NavLink className="lnk" to="/map" >map</NavLink>
+            <NavLink className="lnk" to="/" >Home</NavLink>
+            <NavLink className="lnk" to="/map" >Map</NavLink>
 
-            <NavLink className="lnk" to="login" >login</NavLink>
+            {!localStorage.getItem('user') && <NavLink className="lnk" to="login" >Login</NavLink>}
 
             {localStorage.getItem('user') && <NavLink className="lnk" to="logout" onClick={logout}>logout</NavLink>}
-            <NavLink className="lnk" to="register" >register</NavLink>
+            {!localStorage.getItem('user') && <NavLink className="lnk" to="register" >Register</NavLink>}
 
         </nav>
     )

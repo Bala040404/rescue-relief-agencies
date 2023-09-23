@@ -16,8 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.6",
-    "react-router-dom": "^6.16.0",
-    "react-widgets": "^5.8.4"
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

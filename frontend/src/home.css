@@ -1,24 +1,71 @@
 .agencycard {
-    height: 300px;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #939393;
-    border: 2px solid #838383;
-    ;
-    border-radius: 0.3em;
-    margin: 10px;
-
+  height: 300px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #939393;
+  padding-left: 25px;
+  border-radius: 0.3em;
+  margin: 10px;
 }
 
+#search {
+  text-align: right;
+  margin-right: 30px;
+}
+
+#search input {
+  border: none;
+  border-radius: 0%;
+  width: 220px;
+  box-sizing: border-box;
+}
+
+#search button {
+  border: none;
+  border-radius: 0%;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+h1 {
+  padding: 50px 0px;
+  text-align: center;
+}
+
+#desc {
+  margin: 0 auto;
+  text-align: center;
+  width: 700px;
+  padding-bottom: 50px;
+}
+
+.flood {
+  background-image: url("./assets/flood.jpg");
+}
+
+.cyclone {
+  background-image: url("./assets/cyclone.jpg");
+}
+
+.fire {
+  background-image: url("./assets/fire.jpg");
+}
+
+.earthquake {
+  background-image: url("./assets/earthquake.jpg");
+}
+
+.landslide {
+  background-image: url("./assets/landslide.jpg");
+}
 
 .agencycardcontainer {
-
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }

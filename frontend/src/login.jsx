@@ -46,7 +46,7 @@ function Login() {
 
             <form onSubmit={handleSubmit}>
                 <div class="form-group">
-                    <label>Name of the agency:</label>
+                    <label>Enter Agency Name</label>
                     <input type="text" value={username} onChange={(e) => {
                         setUsername(e.target.value)
                     }} />
@@ -54,14 +54,14 @@ function Login() {
 
                 <div class="form-group">
 
-                    <label>Password:</label>
+                    <label>Enter Password</label>
                     <input type="password" value={password} onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
                 </div>
 
                 <center>
-                    <button type="submit">submit</button>
+                    <button type="submit">Login</button>
                 </center>
 
             </form>

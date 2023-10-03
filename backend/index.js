@@ -38,6 +38,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+app.get("/", (req, res) => {
+    res.send("hi")
+})
 
 app.use("/agency", agencyRouter)
 app.use('/register', registerRouter)

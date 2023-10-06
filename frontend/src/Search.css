@@ -1,0 +1,21 @@
+#search {
+    text-align: right;
+    margin-right: 30px;
+}
+
+#search input {
+    border: none;
+    border-radius: 20px;
+    /* border-radius: 0%; */
+    width: 240px;
+    box-sizing: border-box;
+}
+
+#search button {
+    border: none;
+    /* border-radius: 0%; */
+    border-radius: 20px;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 15px;
+}

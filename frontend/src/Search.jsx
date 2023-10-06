@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from "react";
 
+
+import "./Search.css"
 function Search(props) {
     let [search, setSearch] = useState("");
     async function handleSubmit(e) {

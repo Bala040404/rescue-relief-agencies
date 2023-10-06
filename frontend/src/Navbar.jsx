@@ -23,16 +23,16 @@ function Navbar() {
       </div>
 
       <div id="navcontainer">
-        <NavLink className="lnk" to="/">
+        <NavLink reloadDocument className="lnk" to="/">
           Home
 
         </NavLink>
-        <NavLink className="lnk" to="/map">
+        <NavLink reloadDocument className="lnk" to="/map">
           Map
         </NavLink>
 
         {!localStorage.getItem("user") && (
-          <NavLink className="lnk" to="login">
+          <NavLink reloadDocument className="lnk" to="login">
             Login
           </NavLink>
         )}
@@ -43,7 +43,7 @@ function Navbar() {
           </NavLink>
         )}
         {!localStorage.getItem("user") && (
-          <NavLink className="lnk" to="register">
+          <NavLink reloadDocument className="lnk" to="register">
             Register
           </NavLink>
         )}

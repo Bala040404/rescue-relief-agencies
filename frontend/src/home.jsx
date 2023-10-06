@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 import "./home.css";
 
+import Agencycard from "./Agencycard";
+import Search from "./Search";
+
 function Home() {
   let [agencies, setAgencies] = useState([{}]);
   async function fetchAgencies() {
@@ -14,31 +17,18 @@ function Home() {
     fetchAgencies();
   }, []);
 
-  let [search, setSearch] = useState("");
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    let newList = agencies.filter((agency) => {
-      return agency.expertise.toLowerCase() === search.toLowerCase() || agency.location.toLowerCase() === search.toLowerCase();
-    });
-
-    setAgencies(newList);
-  }
 
   let x = agencies.map((agenc, i) => {
     let cName = "agencycard";
     if (agenc.expertise) {
       cName = `agencycard ${agenc.expertise.toLowerCase()}`;
     }
+
     return (
-      <div key={i} className={cName}>
-        <h1>{agenc.username}</h1>
-        <h2>Expertise - {agenc.expertise}</h2>
-        <h3>Location - {agenc.location}</h3>
-        <h3>Contact - {agenc.contact}</h3>
-      </div>
+      <Agencycard key={i} cls={cName} agency={agenc} />
     );
+
+
   });
 
   return (
@@ -52,18 +42,8 @@ function Home() {
         aid relief efforts, fostering a sense of solidarity during times of
         adversity.
       </p>
-      <form id="search" onSubmit={handleSubmit}>
-        <input
-          required
-          placeholder="Search for agency type/location"
-          type="text"
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value.trim());
-          }}
-        />
-        <button>Search</button>
-      </form>
+
+      <Search agencySetter={setAgencies} agencies={agencies}></Search>
       <div className="agencycardcontainer">{x}</div>
     </>
   );

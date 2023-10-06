@@ -50,7 +50,7 @@ function Mapp() {
   console.log(coordinates);
 
   let markers = coordinates.map((e) => {
-    return <Marker longitude={e[0]} latitude={e[1]} color="red" />;
+    return <Marker longitude={e[0]} latitude={e[1]} color="yellow" />;
   });
   return (
     <Map

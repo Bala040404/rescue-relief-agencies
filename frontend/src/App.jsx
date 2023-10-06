@@ -13,7 +13,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/map" element={<Mapp />}></Route>
-        <Route path="/add" element={<h1>add</h1>}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/logout" element={<h1>logout</h1>}></Route>
         <Route path="/register" element={<Register />}></Route>

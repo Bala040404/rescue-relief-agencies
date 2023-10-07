@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 import Map, { NavigationControl, Marker } from "react-map-gl";
 
@@ -10,6 +11,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./Mapp.css";
 
 function Mapp() {
+  let redirect = useNavigate();
   let [agencies, setAgencies] = useState([{}]);
   const [coordinates, setCoordinates] = useState([]);
   async function fetchAgencies() {
@@ -22,35 +24,40 @@ function Mapp() {
     fetchAgencies();
   }, []);
 
-  async function getCoords(loc) {
+  async function getCoords(loc, id) {
     let cord = await fetch(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc}.json?access_token=${token}`
     );
     cord = await cord.json();
-    return cord.features[0].geometry.coordinates;
+
+    let x = cord.features[0].geometry.coordinates
+    x.push(id)
+
+
+    return x;
   }
 
-  // Assuming 'agencies' is an array of locations
+
   useEffect(() => {
-    // Use Promise.all to fetch coordinates for all agencies
+
     Promise.all(
       agencies.map(async (agency) => {
-        const coords = await getCoords(agency.location);
-        return coords; // Return the coordinates to be included in the results array
+        const coords = await getCoords(agency.location, agency._id);
+        return coords;
       })
     )
       .then((results) => {
-        setCoordinates(results); // Update the state with the fetched coordinates
+        setCoordinates(results);
       })
       .catch((error) => {
         console.error("Error fetching coordinates for agencies:", error);
       });
   }, [agencies]); // Make sure to depend on agencies, not coordinates
 
-  console.log(coordinates);
 
-  let markers = coordinates.map((e) => {
-    return <Marker longitude={e[0]} latitude={e[1]} color="yellow" />;
+
+  let markers = coordinates.map((e, i) => {
+    return <Marker key={i} onClick={() => redirect(`/${e[2]}`)} longitude={e[0]} latitude={e[1]} color="yellow" />;
   });
   return (
     <Map

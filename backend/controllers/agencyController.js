@@ -57,6 +57,14 @@ async function getAgency(req, res) {
   res.status(200).json(allAgencies);
 }
 
+async function getAgencyById(req, res) {
+  const { id } = req.params;
+  const agency = await Agency.findById({ _id: id });
+  res.status(200).json({ agency: agency })
+
+
+}
+
 // async function addAgency(req, res) {
 //     const { name, location } = req.body
 //     await Agency.create({ name, location })
@@ -78,4 +86,4 @@ async function getAgency(req, res) {
 //     res.status(200).json({ mes: "deleted" });
 // }
 
-module.exports = { getAgency, registerAgency, loginAgency, logoutAgency };
+module.exports = { getAgencyById, getAgency, registerAgency, loginAgency, logoutAgency };

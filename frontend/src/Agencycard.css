@@ -1,38 +1,43 @@
 .flood {
-    background-image: url("./assets/flood.jpg");
+  background-image: url("./assets/flood.jpg");
 }
 
 .cyclone {
-    background-image: url("./assets/cyclone.jpg");
+  background-image: url("./assets/cyclone.jpg");
 }
 
 .fire {
-    background-image: url("./assets/fire.jpg");
+  background-image: url("./assets/fire.jpg");
 }
 
 .earthquake {
-    background-image: url("./assets/earthquake.jpg");
+  background-image: url("./assets/earthquake.jpg");
 }
 
 .landslide {
-    background-image: url("./assets/landslide.jpg");
+  background-image: url("./assets/landslide.jpg");
 }
 
 .agencycard {
-    height: 300px;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #939393;
-    padding-left: 25px;
-    border-radius: 0.3em;
-    margin: 10px;
-    transition: 500ms;
+  height: 300px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #939393;
+  padding-left: 25px;
+  border-radius: 0.3em;
+  margin: 10px;
+  transition: 500ms;
 }
 
 .agencycard:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
+  cursor: pointer;
+}
 
+.card-text span {
+  display: inline-block;
+  margin: 0 10px;
 }

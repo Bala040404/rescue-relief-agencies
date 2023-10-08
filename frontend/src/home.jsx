@@ -7,16 +7,17 @@ import Search from "./Search";
 
 function Home() {
   let [agencies, setAgencies] = useState([{}]);
+  const [allAgencies, setAllAgencies] = useState([{}]);
   async function fetchAgencies() {
     let allAgency = await fetch("http://localhost:4000/agency");
     allAgency = await allAgency.json();
     setAgencies(allAgency);
+    setAllAgencies(allAgency);
   }
 
   useEffect(() => {
     fetchAgencies();
   }, []);
-
 
   let x = agencies.map((agenc, i) => {
     let cName = "agencycard";
@@ -24,11 +25,7 @@ function Home() {
       cName = `agencycard ${agenc.expertise.toLowerCase()}`;
     }
 
-    return (
-      <Agencycard key={i} cls={cName} agency={agenc} />
-    );
-
-
+    return <Agencycard key={i} cls={cName} agency={agenc} />;
   });
 
   return (
@@ -43,7 +40,7 @@ function Home() {
         adversity.
       </p>
 
-      <Search agencySetter={setAgencies} agencies={agencies}></Search>
+      <Search agencySetter={setAgencies} agencies={allAgencies}></Search>
       <div className="agencycardcontainer">{x}</div>
     </>
   );
